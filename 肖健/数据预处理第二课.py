@@ -8,9 +8,9 @@ data = load_iris()
 X = data['data']
 y = data['target']
 ### 代码开始
-n,d =  X.data.shape# 样本个数 特征个数
-means =  (X.mean())# 数据X的各特征均值
-stds =   (X.std())# 数据X的个特征标准差
+n,d =  X.shape# 样本个数 特征个数
+means =  (np.mean(X,axis=0))# 数据X的各特征均值
+stds =   (np.std(X,axis=0))# 数据X的个特征标准差
 ### 代码结束
 print('样本个数为：'+str(n) + '\n特征个数为：'+str(d))
 print('样本各特征均值为：\n')
