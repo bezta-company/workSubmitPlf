@@ -29,7 +29,7 @@ val_y = np.r_[val_y1, val_y2, val_y3]
 from sklearn import preprocessing
 
 ### 代码开始
-scaler = preprocessing.StandardScaler().fit(X)
+scaler = preprocessing.StandardScaler().fit(train_X)
 train_X = scaler.transform(train_X) # 将训练数据归一化
 val_X = scaler.transform(val_X) # 将验证数据归一化
 ### 代码结束
