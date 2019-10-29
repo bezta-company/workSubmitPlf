@@ -57,7 +57,6 @@ df_old = df.groupby('Region')['Year'].mean().to_frame().reset_index().sort_value
 print("最新/最老的区县名：")
 print(df_old.iloc[0, 0]+"/"+df_old.iloc[df_old.shape[0]-1, 0]+"\n")
 # 09 小区特征聚类分析
-from Kmeans import Kmeans_test
 # 对电梯值处理
 df.loc[(df['Floor'] > 6) & (df['Elevator'].isnull()), 'Elevator'] = '有电梯'
 df.loc[(df['Floor'] <= 6) & (df['Elevator'].isnull()), 'Elevator'] = '无电梯'
@@ -115,6 +114,8 @@ df = pd.DataFrame(df, columns=columns)
 
 # print(type(df))
 # 聚类
-A = Kmeans_test.rukou("lianjia",1000,9,22,0,0.5,df)
+from Kmeans import Kmeans_test
+A = Kmeans_test.Kmeans(4, 22, 0, df).demand(100, 0.5)
+# A = Kmeans_test.rukou("lianjia",1000,9,22,0,0.5,df)
 print(A)
 
