@@ -1,0 +1,17 @@
+
+
+
+    
+1，参考xiaoqu.csv文件， 重新添加一列为full_name
+    
+   该列的内容按如下格式填写:
+   
+   杭州--萧山--百尺溇公寓
+
+
+    
+2，参考xiaoqu.csv文件， 重新添加一列为result
+
+   检查 average_price列的数据，如果为暂无，则标记为True，否则False
+       
+       
