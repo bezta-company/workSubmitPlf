@@ -1,0 +1,50 @@
+//  距离在500米范围内且小区名字相似
+  def find_silimar(): Unit={
+    val rdd = spark.sparkContext.textFile("data/xiaoqu.csv")
+    val silimer = rdd.map(line => line.split(","))
+      .map(values => (values(3), values(4), values(5), values(7)))
+      .map(value => {
+        try{
+          (value._1, (value._2.toDouble, value._3.toDouble, value._4))
+        }catch {
+          case _ =>{
+            println("type convert error")
+          }
+            ("", (-1.0, -1.0, ""))
+        }
+      }).filter(v => !v._1.equals(""))
+      .groupByKey()
+      .filter(value => value._2.size>=3)
+      .map(line => {
+        val ite = line._2
+        ite.reduce((x, y) => )//判断500米内？？
+      })
+
+    silimer.foreach(println)
+  }
+
+//  添加一列为full_name
+  def add_name(): Unit ={
+    val rdd = spark.sparkContext.textFile("data/xiaoqu.csv")
+    val addname = rdd.map(line => line.split(","))
+      .map(values => (values(1), (values(0).split("-"))(0).toString, values(7)))
+    val result = addname.map(value => (value._1+"--"+value._2+"--"+value._3))
+    result.foreach(println)
+  }
+
+//  添加一列为result
+  def add_result(): Unit ={
+    val rdd = spark.sparkContext.textFile("data/xiaoqu.csv")
+    val average = rdd.map(line => line.split(","))
+      .map(value => value(6))
+    val result = average.map(value => decide(value))
+    result.foreach(println)
+  }
+
+  def decide(value: String):String ={
+    var result = "False"
+    if (value == "暂无"){
+      result = "Ture"
+    }
+    result
+  }
