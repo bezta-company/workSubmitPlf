@@ -12,13 +12,31 @@
           }
             ("", (-1.0, -1.0, ""))
         }
-      }).filter(v => !v._1.equals(""))
-      .groupByKey()
-      .filter(value => value._2.size>=3)
-      .map(line => {
-        val ite = line._2
-        ite.reduce((x, y) => )//ÅÐ¶Ï500Ã×ÄÚ£¿£¿
       })
+      .filter(v => !v._1.equals(""))
+      .groupByKey()
+      .filter(value => value._2.size>=2)
+      .map(line => {
+        try {
+          val ite = line._2
+          val li = ite.toList
+          val array = ArrayBuffer[(String, String)]()
+          for (i <- 0 to ite.size-1){
+            for (j <- i+1 to ite.size-1){
+              if (get_point_distance(li(i)._1, li(i)._2, li(j)._1, li(j)._2) < 500){
+                array.append((li(i)._3, li(j)._3))
+              }
+            }
+          }
+//          (line._1 ,array)
+          array
+        }catch {
+          case _ => {
+            println("error")
+          }
+        }
+      })
+      .filter(value => !value.equals(ArrayBuffer()))
 
     silimer.foreach(println)
   }
