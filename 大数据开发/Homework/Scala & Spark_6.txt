@@ -1,0 +1,8 @@
+
+
+练习 spark-ml 
+1.从ptypes 文件 取出  ss_id > 1000000 and ss_id < 2000000  并且city_id=1 的所有点 
+
+生成包含如下字段的数据集 ： ss_id, ss_name, longtitude, latitude, 
+
+以经纬度作为距离计算的特征，对该数据集kmeans聚类 (用spark-ml)
